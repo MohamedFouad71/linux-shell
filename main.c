@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
     gethostname(hostname, sizeof(hostname));
 
     char *username = getenv("USER");
-    printf(">>%s@%s:%s$ ", username, hostname, cwd);
+    printf(">%s@%s:%s$ ", username, hostname, cwd);
 
     // Get input from user
     char *line = NULL;
@@ -49,21 +49,6 @@ int main(int argc, char *argv[]) {
         command = strtok(NULL, " \n");
     }
     args[i] = NULL;
-
-    // handling cd
-    if (strcmp(args[0], "cd") == 0) {
-
-        if(args[1] == NULL || args[1] == "~") {
-            chdir(getenv("HOME"));
-        }
-        else {
-            if (chdir(args[1]) == -1) {
-                perror("[Error], Unable to change directory");
-            }
-        }
-        free(line);
-        continue;
-    }
 
     // Excute command
     __pid_t pid = fork();
