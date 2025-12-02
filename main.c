@@ -87,11 +87,11 @@ int main(int argc, char *argv[]) {
         // save current directory before changing
         char current[1024];
         getcwd(current, sizeof(current));
-        strcpy(prev_dir, current);
 
-        // do the chdir
         if (chdir(target) != 0) {
             perror("cd");
+        } else {
+            strcpy(prev_dir, current);  // only update previous dir AFTER successful cd
         }
 
         free(line);
