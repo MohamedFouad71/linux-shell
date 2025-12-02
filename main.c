@@ -4,12 +4,17 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 
+typedef unsigned long long u64;
+#define MAXIMUM_LINE_LENGTH 1024
+
+
 int main(int argc, char *argv[]) {
 
     while (1) {
 
     // Prompt
-    char cwd[1024];
+    char cwd    
+    [1024];
     getcwd(cwd, sizeof(cwd));
     
     char hostname[1024];
@@ -92,8 +97,48 @@ int main(int argc, char *argv[]) {
         free(line);
         continue;
     }
+
+    // Handle count
+    if(strcmp(args[0], "count") == 0){
+
+        FILE* file = fopen(args[1], "r");
+        if(file == NULL){
+            // Error occured while openning file
+            perror("Couldn't open file");
+            free(line);
+            continue;
+        }
+
+        u64 lineCounter = 0, wordCounter = 0, charCounter = 0;
+
+        char fileLine[MAXIMUM_LINE_LENGTH];
+        while(fgets(fileLine, MAXIMUM_LINE_LENGTH, file) != NULL){
+            ++lineCounter;
+            
+            // count number of characters in line
+            size_t lineLength = strlen(fileLine);
+            if(fileLine[lineLength-1] == '\n') --lineLength;
+            charCounter += lineLength;
+            
+            // Count number of words in line
+            char* word = strtok(fileLine, " \n");
+            while(word != NULL){
+                ++wordCounter;
+                word = strtok(NULL, " \n");
+            }
+
+        }
+        if(fclose(file) == EOF) 
+            perror("Couldn't close file");
+
+        // Print counters
+        printf("%llu %llu %llu %s\n", lineCounter, wordCounter, charCounter, args[1]);
+        free(line);
+        continue;
+    }
+
     // Exec command
-    __pid_t pid = fork();
+    pid_t pid = fork();
 
     // child process
     if (pid == -1) {
