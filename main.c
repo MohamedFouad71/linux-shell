@@ -7,6 +7,7 @@
 typedef unsigned long long u64;
 #define MAXIMUM_LINE_LENGTH 1024
 
+
 void about() {
     const char* blue   = "\033[1;34m";
     const char* green  = "\033[1;32m";
@@ -82,13 +83,7 @@ int main(int argc, char *argv[]) {
         break;
     }
         
-    // handling about
-    if (strcmp(args[0], "about") == 0) {
-        about();
-        free(line);
-        continue;
-    }
-
+    
     while (command != NULL) {
         args[i] = command;
         i++;
@@ -97,10 +92,10 @@ int main(int argc, char *argv[]) {
     args[i] = NULL;
     // FULL cd implementation: cd, cd ~, cd -, cd .., cd ., cd ~/folder
     static char prev_dir[1024] = "";  // store previous directory
-
+    
     if (strcmp(args[0], "cd") == 0) {
         char *target = args[1];
-
+        
         // cd  → go HOME
         if (target == NULL) {
             target = getenv("HOME");
@@ -125,21 +120,28 @@ int main(int argc, char *argv[]) {
             snprintf(temp, sizeof(temp), "%s%s", getenv("HOME"), target + 1);
             target = temp;
         }
-
+        
         // save current directory before changing
         char current[1024];
         getcwd(current, sizeof(current));
-
+        
         if (chdir(target) != 0) {
             perror("cd");
         } else {
             strcpy(prev_dir, current);  // only update previous dir AFTER successful cd
         }
-
+        
         free(line);
         continue;
     }
-
+    
+    // handling about
+    if (strcmp(args[0], "about") == 0) {
+        about();
+        free(line);
+        continue;
+    }
+    
     // Handle count
     if(strcmp(args[0], "count") == 0){
 
