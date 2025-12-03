@@ -7,6 +7,149 @@
 typedef unsigned long long u64;
 #define MAXIMUM_LINE_LENGTH 1024
 
+void count(char** args);
+void help();
+void about();
+
+
+int main(int argc, char *argv[]) {
+    while (1) {
+        // Prompt
+        char cwd[1024];
+        getcwd(cwd, sizeof(cwd));
+        
+        char hostname[1024];
+        gethostname(hostname, sizeof(hostname));
+
+        char *username = getenv("USER");
+        printf(">%s@%s:%s$ ", username, hostname, cwd);
+
+        // Get input from user
+        char *line = NULL;
+        size_t n = 0; 
+        ssize_t numberOfChars; 
+
+        // Replace '\n' (from getline output) with '\0' for proper execution
+        numberOfChars = getline(&line, &n, stdin);
+        line[numberOfChars - 1] = '\0';
+        
+        // Tokenize input
+        char *args[20];
+        int i = 0;
+        char *command = strtok(line, " ");
+        if (command == NULL) {
+            free(line);
+            continue;
+        }
+
+        // handling exit
+        if (strcmp(command, "exit") == 0) {
+            free(line);
+            break;
+        }
+
+        // Parse the rest of the arguments
+        while (command != NULL) {
+            args[i] = command;
+            i++;
+            command = strtok(NULL, " \n");
+        }
+        args[i] = NULL;
+
+
+        // FULL cd implementation: cd, cd ~, cd -, cd .., cd ., cd ~/folder
+        static char prev_dir[1024] = "";  // store previous directory
+
+        if (strcmp(args[0], "cd") == 0) {
+            char *target = args[1];
+
+            // cd  → go HOME
+            if (target == NULL) {
+                target = getenv("HOME");
+            }
+            // cd ~
+            else if (strcmp(target, "~") == 0) {
+                target = getenv("HOME");
+            }
+            // cd -
+            else if (strcmp(target, "-") == 0) {
+                if (prev_dir[0] == '\0') {
+                    printf("No previous directory\n");
+                    free(line);
+                    continue;
+                }
+                printf("%s\n", prev_dir); // like bash: print the old path
+                target = prev_dir;
+            }
+            // cd ~/folder
+            else if (target[0] == '~' && target[1] == '/') {
+                static char temp[1024];
+                snprintf(temp, sizeof(temp), "%s%s", getenv("HOME"), target + 1);
+                target = temp;
+            }
+
+            // save current directory before changing
+            char current[1024];
+            getcwd(current, sizeof(current));
+
+            if (chdir(target) != 0) {
+                perror("cd");
+            } else {
+                strcpy(prev_dir, current);  // only update previous dir AFTER successful cd
+            }
+
+            free(line);
+            continue;
+        }
+
+        // Handle about
+        if (strcmp(args[0], "about") == 0) {
+            about();
+            free(line);
+            continue;
+        }
+
+        // Handle count
+        if(strcmp(args[0], "count") == 0){
+            count(args);
+            free(line);
+            continue;
+        }
+
+        // Handle help
+        if (strcmp(args[0], "help") == 0) {
+            help();
+            free(line);
+            continue;
+        }
+
+        // Exec command
+        pid_t pid = fork();
+
+        // Handle the failure of fork
+        if (pid == -1) {
+            perror("Fork Failed");
+            exit(1);
+        }
+
+        // Child process will run this block
+        if (pid == 0) {
+            execvp(args[0], args);
+
+            perror("execvp failed");
+            exit(1);
+        }
+
+        // Wait for child to terminate
+        wait(NULL);
+
+        free(line);
+    }
+
+    return 0;
+}
+
+
 
 void about() {
     const char* blue   = "\033[1;34m";
@@ -43,206 +186,69 @@ void about() {
     printf("%s============================================%s\n", magenta, reset);
 }
 
+void count(char** args){
+    FILE* file = fopen(args[1], "r");
 
-int main(int argc, char *argv[]) {
-
-    while (1) {
-
-    // Prompt
-    char cwd    
-    [1024];
-    getcwd(cwd, sizeof(cwd));
-    
-    char hostname[1024];
-    gethostname(hostname, sizeof(hostname));
-
-    char *username = getenv("USER");
-    printf(">%s@%s:%s$ ", username, hostname, cwd);
-
-    // Get input from user
-    char *line = NULL;
-    size_t n = 0; 
-    ssize_t numberOfChars; 
-
-    // Replace '\n' (from getline output) with '\0' for proper execution
-    numberOfChars = getline(&line, &n, stdin);
-    line[numberOfChars - 1] = '\0';
-    
-    // Tokenize input
-    char *args[20];
-    int i = 0;
-    char *command = strtok(line, " ");
-    if (command == NULL) {
-        free(line);
-        continue;
+    // Error occured while openning file
+    if(file == NULL){
+        perror("Couldn't open file");
+        return;
     }
+    u64 lineCounter = 0, wordCounter = 0, charCounter = 0;
+    char fileLine[MAXIMUM_LINE_LENGTH];
 
-    // handling exit
-    if (strcmp(command, "exit") == 0) {
-        free(line);
-        break;
-    }
+    // Read the file line by line
+    while(fgets(fileLine, MAXIMUM_LINE_LENGTH, file) != NULL){
+        ++lineCounter; // increment the number of lines
         
-    
-    while (command != NULL) {
-        args[i] = command;
-        i++;
-        command = strtok(NULL, " \n");
-    }
-    args[i] = NULL;
-    // FULL cd implementation: cd, cd ~, cd -, cd .., cd ., cd ~/folder
-    static char prev_dir[1024] = "";  // store previous directory
-    
-    if (strcmp(args[0], "cd") == 0) {
-        char *target = args[1];
+        // count number of characters in line
+        size_t lineLength = strlen(fileLine);
+        if(fileLine[lineLength-1] == '\n') --lineLength; // Don't count the \n character
+        charCounter += lineLength;
         
-        // cd  → go HOME
-        if (target == NULL) {
-            target = getenv("HOME");
+        // Count number of words in line
+        char* word = strtok(fileLine, " \n");
+        while(word != NULL){
+            ++wordCounter; 
+            word = strtok(NULL, " \n");
         }
-        // cd ~
-        else if (strcmp(target, "~") == 0) {
-            target = getenv("HOME");
-        }
-        // cd -
-        else if (strcmp(target, "-") == 0) {
-            if (prev_dir[0] == '\0') {
-                printf("No previous directory\n");
-                free(line);
-                continue;
-            }
-            printf("%s\n", prev_dir); // like bash: print the old path
-            target = prev_dir;
-        }
-        // cd ~/folder
-        else if (target[0] == '~' && target[1] == '/') {
-            static char temp[1024];
-            snprintf(temp, sizeof(temp), "%s%s", getenv("HOME"), target + 1);
-            target = temp;
-        }
-        
-        // save current directory before changing
-        char current[1024];
-        getcwd(current, sizeof(current));
-        
-        if (chdir(target) != 0) {
-            perror("cd");
-        } else {
-            strcpy(prev_dir, current);  // only update previous dir AFTER successful cd
-        }
-        
-        free(line);
-        continue;
     }
-    
-    // handling about
-    if (strcmp(args[0], "about") == 0) {
-        about();
-        free(line);
-        continue;
-    }
-    
-    // Handle count
-    if(strcmp(args[0], "count") == 0){
-
-        FILE* file = fopen(args[1], "r");
-        if(file == NULL){
-            // Error occured while openning file
-            perror("Couldn't open file");
-            free(line);
-            continue;
-        }
-
-        u64 lineCounter = 0, wordCounter = 0, charCounter = 0;
-
-        char fileLine[MAXIMUM_LINE_LENGTH];
-        while(fgets(fileLine, MAXIMUM_LINE_LENGTH, file) != NULL){
-            ++lineCounter;
-            
-            // count number of characters in line
-            size_t lineLength = strlen(fileLine);
-            if(fileLine[lineLength-1] == '\n') --lineLength;
-            charCounter += lineLength;
-            
-            // Count number of words in line
-            char* word = strtok(fileLine, " \n");
-            while(word != NULL){
-                ++wordCounter;
-                word = strtok(NULL, " \n");
-            }
-
-        }
-        if(fclose(file) == EOF) 
-            perror("Couldn't close file");
-
-        // Print counters
-        printf("%llu %llu %llu %s\n", lineCounter, wordCounter, charCounter, args[1]);
-        free(line);
-        continue;
-    }
-    
-
-
-
-    // Handle help
-    if (strcmp(args[0], "help") == 0) {
-        printf("\n--- My Simple Shell Help ---\n");
-        
-        printf("GNU bash, version 5.3.3(1)-release (x86_64-pc-linux-gnu)\n");
-        printf("These shell commands are defined internally.  Type `help' to see this list.\n");
-        printf("Type `help name' to find out more about the function `name'.\n");
-        printf("Use `info bash' to find out more about the shell in general.\n");
-        printf("Use `man -k' or `info' to find out more about commands not in this list.\n\n");
-        printf("A star (*) next to a name means that the command is disabled.\n\n");
-
-
-         
-        printf("\n[1] Built-in Commands (Custom Implemented):\n");
-        printf("  cd <path>        : Change directory. Supports (~ for home, - for prev, .. for up)\n");
-        printf("  count <filename> : Analyze file (counts lines, words, and characters)\n");
-        printf("  exit             : Terminate the shell session\n");
-        printf("  help             : Display this help message\n");
-
-        printf("\n[2] Common External Commands:\n");
-        printf("  ls [-l] [-a]     : List directory contents (Long format, All files)\n");
-        printf("  pwd              : Print current working directory path\n");
-        printf("  mkdir <dirname>  : Create a new directory\n");
-        printf("  rm <filename>    : Remove (delete) a file\n");
-        printf("  rmdir <dirname>  : Remove an empty directory\n");
-        printf("  cp <src> <dest>  : Copy file from source to destination\n");
-        printf("  mv <src> <dest>  : Move or rename a file\n");
-        printf("  cat <filename>   : Display file content\n");
-        printf("  grep <txt> <file>: Search for a text pattern inside a file\n");
-        printf("  clear            : Clear the terminal screen\n");
-        
-        printf("\nNote: You can execute ANY standard Linux command/program installed on this system.\n\n");
-
-        free(line);
-        continue;
-    }
-
-
-
-    // Exec command
-    pid_t pid = fork();
-
-    // child process
-    if (pid == -1) {
-        perror("Fork Failed");
-        exit(1);
-    }
-
-    if (pid == 0) {
-        execvp(args[0], args);
-
-        perror("execvp failed");
-        exit(1);
-    }
-    wait(NULL);
-
-    free(line);
-    
-    }
-
-    return 0;
+    if(fclose(file) == EOF) 
+        perror("Couldn't close file");
+    // Print counters
+    printf("%llu %llu %llu %s\n", lineCounter, wordCounter, charCounter, args[1]);
 }
+
+void help(){
+    printf("\n--- My Simple Shell Help ---\n");
+        
+    printf("GNU bash, version 5.3.3(1)-release (x86_64-pc-linux-gnu)\n");
+    printf("These shell commands are defined internally.  Type `help' to see this list.\n");
+    printf("Type `help name' to find out more about the function `name'.\n");
+    printf("Use `info bash' to find out more about the shell in general.\n");
+    printf("Use `man -k' or `info' to find out more about commands not in this list.\n\n");
+    printf("A star (*) next to a name means that the command is disabled.\n\n");
+
+
+     
+    printf("\n[1] Built-in Commands (Custom Implemented):\n");
+    printf("  cd <path>        : Change directory. Supports (~ for home, - for prev, .. for up)\n");
+    printf("  count <filename> : Analyze file (counts lines, words, and characters)\n");
+    printf("  exit             : Terminate the shell session\n");
+    printf("  help             : Display this help message\n");
+
+    printf("\n[2] Common External Commands:\n");
+    printf("  ls [-l] [-a]     : List directory contents (Long format, All files)\n");
+    printf("  pwd              : Print current working directory path\n");
+    printf("  mkdir <dirname>  : Create a new directory\n");
+    printf("  rm <filename>    : Remove (delete) a file\n");
+    printf("  rmdir <dirname>  : Remove an empty directory\n");
+    printf("  cp <src> <dest>  : Copy file from source to destination\n");
+    printf("  mv <src> <dest>  : Move or rename a file\n");
+    printf("  cat <filename>   : Display file content\n");
+    printf("  grep <txt> <file>: Search for a text pattern inside a file\n");
+    printf("  clear            : Clear the terminal screen\n");
+    
+    printf("\nNote: You can execute ANY standard Linux command/program installed on this system.\n\n");
+}
+
