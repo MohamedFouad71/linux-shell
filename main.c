@@ -16,8 +16,8 @@ void about() {
 
     printf("%s============================================%s\n", magenta, reset);
     printf("%s✨ Glitchy ✨%s\n", blue, reset);
+    printf("%sIntoduced To:%s Eng. Omar Al-Hussiny.\n", green, reset);
     printf("%sDeveloped by:%s Kareem Hany, Muhammed Fouad, Muhammed Ashraf, Muhammed Fatooh, Yehya Hamdy, Ahmed Abdullatif and Somia Khaled.\n", green, reset);
-    printf("%sRelease Date:%s December 2025\n", green, reset);
     printf("%s--------------------------------------------%s\n", magenta, reset);
     printf("%s📄 Description:%s\n", yellow, reset);
     printf("Glitchy is a lightweight Linux-like terminal designed for learning\n");
