@@ -2,26 +2,23 @@
 
 int main() {
     while (1) {
-        // Prompt
         display_prompt();
     
-        // Get input from user
-        char* line = read_input();
+        char* input_line = read_input();
         
-        // Tokenize input
-        char** args = tokenize_input(line);
+        char** command_args = tokenize_input(input_line);
 
-        // handling empty input and built-in commands
-        if (args[0] == NULL || is_builtins(args, line)) {
-            free(line);
-            free(args);
+        // Handling empty input and built-in commands
+        if (command_args[0] == NULL || is_builtins(command_args, input_line)) {
+            free(input_line);
+            free(command_args);
             continue;
         }
-        // Execute external command
-        execute_command(args, line);
 
-        free(args);
-        free(line);
+        execute_command(command_args, input_line);
+
+        free(input_line);
+        free(command_args);
     }
 
     return 0;
