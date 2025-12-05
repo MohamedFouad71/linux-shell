@@ -21,7 +21,6 @@ It covers essential concepts such as:
 ├── README.md
 ├── include
 │   ├── builtins.h
-│   ├── colors.h
 │   ├── executor.h
 │   ├── input.h
 │   ├── prompt.h
@@ -34,7 +33,6 @@ It covers essential concepts such as:
     │   ├── cd.c
     │   ├── count.c
     │   └── help.c
-    ├── colors.c
     ├── executor.c
     ├── input.c
     ├── main.c
@@ -56,7 +54,7 @@ cd linux-shell
 
 If you are not using Makefile:
 ```
-gcc src/*.c src/builtins/*.c -o my_shell
+gcc src/*.c src/builtins/*.c -o shell
 ```
 
 If you have a Makefile:
@@ -65,7 +63,7 @@ make
 ```
 ### 3️⃣ Run the shell
 ```
-./my_shell
+./shell
 ```
 You should see a prompt like:
 
