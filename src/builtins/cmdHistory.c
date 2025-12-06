@@ -1,11 +1,24 @@
 #include "../../include/cmdHistory.h"
 #include <stdio.h>
 #include <time.h>
+#include <unistd.h>
+#include <string.h>
+
+void getHistoryFileDir(char* path, int size){
+    ssize_t length = readlink("/proc/self/exe", path, size);
+    // Get a pointer to the last slash in the path
+    char* lastSlash = strrchr(path,'/');
+    // Convert the last slash to a null character, and neglect the executable name
+    *lastSlash = '\0';
+    // Add the path of the cmd_history to the path of the project
+    strcat(path, "/data/cmd_history.txt");
+}
 
 
-void addCommandToHistory(char** args){
+
+void addCommandToHistory(char** args, char* pathToFile){
     // Open file for appending
-    FILE* file = fopen("data/cmd_history.txt", "a");
+    FILE* file = fopen(pathToFile, "a");
 
     // If an erorr occurred while oppening the file
     if(file == NULL){
