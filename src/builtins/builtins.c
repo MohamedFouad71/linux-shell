@@ -1,7 +1,7 @@
 #include "../../include/shell.h"
 
 int is_builtins(char** args, char* line) {
-
+    addCommandToHistory(args);
     if (strcmp(args[0], "exit") == 0) {
         free(line);
         free(args);
