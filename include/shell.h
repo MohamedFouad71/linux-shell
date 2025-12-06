@@ -17,5 +17,5 @@ typedef unsigned long long u64;
 #include "tokenizer.h"
 #include "executor.h"
 #include "builtins.h"
-
+#include "cmdHistory.h"
 #endif
