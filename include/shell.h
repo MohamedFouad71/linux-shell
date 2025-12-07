@@ -9,6 +9,7 @@
 #include <sys/wait.h>
 #include <sys/stat.h>  // for file permissions
 
+#include <limits.h>
 
 #define MAXIMUM_LINE_LENGTH 1024
 typedef unsigned long long u64;

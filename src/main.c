@@ -1,6 +1,9 @@
 #include "../include/shell.h"
+#include <linux/limits.h>
 
 int main() {
+    char historyFilePath[PATH_MAX];
+    getHistoryFileDir(historyFilePath, PATH_MAX);
     while (1) {
         display_prompt();
     
@@ -16,7 +19,8 @@ int main() {
         char** command_args = tokenize_input(input_line);
 
         // Handling empty input and built-in commands
-        if (command_args[0] == NULL || is_builtins(command_args, input_line)) {
+        if (command_args[0] == NULL 
+            || is_builtins(command_args, input_line, historyFilePath)) {
             free(input_line);
             free(command_args);
             continue;

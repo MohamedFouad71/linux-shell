@@ -1,7 +1,7 @@
 #ifndef BUILTINS_H
 #define BUILTINS_H
 
-int is_builtins(char** args, char* line);
+int is_builtins(char** args, char* line, char* historyFilePath);
 void cd(char** args);
 void about();
 void help();
