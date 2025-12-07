@@ -18,7 +18,7 @@ void getHistoryFileDir(char* path, int size){
     // Convert the last slash to a null character, and neglect the executable name
     *lastSlash = '\0';
     // Add the path of the cmd_history to the path of the project
-    strcat(path, "/data/cmd_history.txt");
+    strcat(path, "/data/cmd_history");
 }
 
 
