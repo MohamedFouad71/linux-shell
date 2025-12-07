@@ -7,6 +7,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include <sys/wait.h>
+#include <sys/stat.h>  // for file permissions
+
 #include <limits.h>
 
 #define MAXIMUM_LINE_LENGTH 1024
@@ -19,4 +21,6 @@ typedef unsigned long long u64;
 #include "executor.h"
 #include "builtins.h"
 #include "cmdHistory.h"
+#include "redirection_append.h"
+#include "trim.h"
 #endif

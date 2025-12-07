@@ -5,7 +5,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Iinclude
 
 # Source files
-SRC = $(wildcard src/*.c) $(wildcard src/builtins/*.c)
+SRC = $(wildcard src/*.c) $(wildcard src/builtins/*.c) $(wildcard src/redirection/*.c)
 
 # Object files
 OBJ = $(SRC:.c=.o)

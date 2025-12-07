@@ -2,3 +2,6 @@
 **/*.out
 **/a.out
 shell
+.vs
+.vscode
+data/cmd_history.txt
