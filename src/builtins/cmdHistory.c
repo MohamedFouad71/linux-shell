@@ -5,7 +5,14 @@
 #include <string.h>
 
 void getHistoryFileDir(char* path, int size){
+    // /prc/self/exe is a symbolic link to the executable file of the current process
+    // readlink returns the contents of the symbolic link 
+    // Which is the path to our program
     ssize_t length = readlink("/proc/self/exe", path, size);
+    if(length == -1){   //Error happended while reading the link
+        perror("Couldn't get history-file directory");
+        return;
+    }
     // Get a pointer to the last slash in the path
     char* lastSlash = strrchr(path,'/');
     // Convert the last slash to a null character, and neglect the executable name
