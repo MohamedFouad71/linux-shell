@@ -23,4 +23,5 @@ typedef unsigned long long u64;
 #include "cmdHistory.h"
 #include "redirection_append.h"
 #include "trim.h"
+#include "pipeline.h"
 #endif

@@ -35,7 +35,7 @@ static void exec_with_single_redirect(int fd, int dest_fd, char *command) {
         }
         close(fd);
 
-        char **args = tokenize_input(command);
+        char **args = tokenize_input(command, " ");
         if (args == NULL || args[0] == NULL) {
             fprintf(stderr, "[Shell ERROR]: empty command\n");
             exit(1);
@@ -75,7 +75,7 @@ static void exec_with_combined_redirect(int fd, char *command) {
         }
         close(fd);
 
-        char **args = tokenize_input(command);
+        char **args = tokenize_input(command, " ");
         if (args == NULL || args[0] == NULL) {
             fprintf(stderr, "[Shell ERROR]: empty command\n");
             exit(1);

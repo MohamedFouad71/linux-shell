@@ -67,7 +67,7 @@ void execute_command(char** args, char* line) {
            
         }
 
-        perror("execvp failed");
+        perror("[Shell Error]: execvp failed in execute_command()");
         free(args);
         free(line);
         exit(1);

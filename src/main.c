@@ -8,15 +8,18 @@ int main() {
         display_prompt();
     
         char* input_line = read_input();
+        if (has_pipe(input_line)) {
+            execute_pipeline(input_line);
+            continue;
+        }
+        
         int redirection_type = redirected_or_appended(input_line);
-        int file_descriptor = -1; // used with redirection
-
         if (redirection_type) {
             parse_redirect_or_append(redirection_type, input_line);
             continue;
         }
         
-        char** command_args = tokenize_input(input_line);
+        char** command_args = tokenize_input(input_line, " ");
 
         // Handling empty input and built-in commands
         if (command_args[0] == NULL 
@@ -30,7 +33,6 @@ int main() {
 
         free(input_line);
         free(command_args);
-        if (file_descriptor > 0) close(file_descriptor);
     }
 
     return 0;
