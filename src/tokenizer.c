@@ -1,19 +1,19 @@
-#include "../include/shell.h"
+// #include "../include/shell.h"
+#include "tokenizer.h"
+#include "trim.h"
+// #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
-char** tokenize_input(char* line) {
+char** tokenize_input(char* line, char *delim) {
     char** args = malloc(20 * sizeof(char*)); // dynamic allocation
     int i = 0;
-    char* command = strtok(line, " ");
-    if (command == NULL) {
-        args[0] = NULL;
-        return args;
-    }
+    char* command = strtok(line, delim);
 
-    // Parse the rest of the arguments
-    while (command != NULL) {
-        args[i] = command;
-        i++;
-        command = strtok(NULL, " \n");
+    while  (command != NULL) {
+        command = trim(command);
+        args[i++] = command;
+        command = strtok(NULL, delim);
     }
     args[i] = NULL;
 
