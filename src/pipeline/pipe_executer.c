@@ -1,14 +1,13 @@
 #include "../../include/pipeline/pipe_executer.h"
 #include "tokenizer.h"
 #include "executor.h"
-#include "linked_list.h"
 #include "builtins.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <sys/wait.h>
 
-void execute_pipeline(char *input_line) {
+void execute_pipeline(char *input_line,char* historyFilePath) {
     // 1. Split the input by the pipe symbol "|"
     char **commands = tokenize_input(input_line, "|");
     if (!commands) return;
@@ -57,7 +56,7 @@ void execute_pipeline(char *input_line) {
             }
 
             // check and excute
-            if (is_builtins(command_args, input_line)) {
+            if (is_builtins(command_args, input_line,historyFilePath)) {
                 free(command_args);
                 free(input_line);
                 _exit(0);
