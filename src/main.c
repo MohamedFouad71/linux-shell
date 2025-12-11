@@ -9,7 +9,7 @@ int main() {
     
         char* input_line = read_input();
         if (has_pipe(input_line)) {
-            execute_pipeline(input_line);
+            execute_pipeline(input_line, historyFilePath);
             continue;
         }
         
