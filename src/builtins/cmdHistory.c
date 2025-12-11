@@ -1,4 +1,4 @@
-#include "../../include/cmdHistory.h"
+#include "../../include/shell.h"
 #include <stdio.h>
 #include <time.h>
 #include <unistd.h>
@@ -55,6 +55,18 @@ void addCommandToHistory(char** args, char* pathToFile){
     fputs("\n", file);
 
     // Close the file and check if an errror ocurred or not
+    int returnValue  = fclose(file);
+    if(returnValue == EOF){
+        perror("Couldn't close file");
+    }
+}
+
+void printHistory(char* pathToFile){
+    FILE* file = fopen(pathToFile,"r");
+    char line[MAXIMUM_LINE_LENGTH];
+    while(fgets(line, MAXIMUM_LINE_LENGTH,file) != NULL){
+        printf("%s",line);
+    }
     int returnValue  = fclose(file);
     if(returnValue == EOF){
         perror("Couldn't close file");

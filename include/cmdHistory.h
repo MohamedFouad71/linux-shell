@@ -4,6 +4,7 @@
 
 void addCommandToHistory(char** args, char* pathToFile);
 void getHistoryFileDir(char* path, int size);
+void printHistory(char* pathToFile);
 
 
 #endif // CMD_HISTORY_H_

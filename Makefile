@@ -1,8 +1,11 @@
 # Compiler 
 CC = gcc
 
-# Flags
+# Compiler Flags (for .c -> .o)
 CFLAGS = -Wall -Wextra -Iinclude
+
+# Linker Flags (for .o -> executable)
+LDLIBS = -lreadline
 
 # Source files
 SRC = $(wildcard src/*.c) $(wildcard src/builtins/*.c) $(wildcard src/redirection/*.c) $(wildcard src/pipeline/*.c)
@@ -18,7 +21,7 @@ all: $(TARGET)
 
 # Build the main program
 $(TARGET): $(OBJ)
-	$(CC) $(OBJ) -o $(TARGET)
+	$(CC) $(OBJ) -o $(TARGET) $(LDLIBS)
 
 # Clean build files
 clean:
