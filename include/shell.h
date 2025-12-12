@@ -22,6 +22,7 @@ typedef unsigned long long u64;
 #include "builtins.h"
 #include "cmdHistory.h"
 #include "redirection_append.h"
+#include "redirection/input_redirection.h"
 #include "trim.h"
 #include "pipeline.h"
 #endif
