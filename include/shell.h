@@ -8,8 +8,10 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 #include <sys/stat.h>  // for file permissions
-
 #include <limits.h>
+#include <readline/readline.h>
+#include <readline/history.h>
+
 
 #define MAXIMUM_LINE_LENGTH 1024
 typedef unsigned long long u64;

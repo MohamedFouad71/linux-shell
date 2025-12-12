@@ -27,6 +27,10 @@ int is_builtins(char** args, char* line,char* historyFilePath) {
         count(args);
         return 1;
     }
+    if(strcmp(args[0],"history") == 0){
+        printHistory(historyFilePath);
+        return 1;
+    }
 
     return 0; // Not a built-in command
 }
