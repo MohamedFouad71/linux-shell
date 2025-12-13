@@ -42,14 +42,14 @@ int main() {
         if (command_args[0] == NULL 
             || is_builtins(command_args, input_line, historyFilePath)) {
             free(input_line);
-            free(command_args);
+            free_tokenized_args(command_args);
             continue;
         }
 
         execute_command(command_args, input_line);
 
         free(input_line);
-        free(command_args);
+        free_tokenized_args(command_args);
     }
 
     return 0;
