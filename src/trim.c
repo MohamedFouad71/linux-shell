@@ -1,4 +1,4 @@
-#include "trim.h"
+#include "../include/trim.h"
 #include <stdio.h>
 
 #include <ctype.h>

@@ -1,5 +1,5 @@
 /* src/redirection/input_redirection.c */
-#include "shell.h"
+#include "../../include/shell.h"
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>

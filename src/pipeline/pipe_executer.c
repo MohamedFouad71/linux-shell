@@ -1,7 +1,7 @@
 #include "../../include/pipeline/pipe_executer.h"
-#include "tokenizer.h"
-#include "executor.h"
-#include "builtins.h"
+#include "../../include/tokenizer.h"
+#include "../../include/executor.h"
+#include "../../include/builtins.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
