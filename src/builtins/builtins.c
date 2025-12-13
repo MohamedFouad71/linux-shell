@@ -4,7 +4,7 @@ int is_builtins(char** args, char* line,char* historyFilePath) {
     addCommandToHistory(args, historyFilePath);
     if (strcmp(args[0], "exit") == 0) {
         free(line);
-        free(args);
+        free_tokenized_args(args);
         exit(0);
     }
 
