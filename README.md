@@ -15,29 +15,54 @@ It covers essential concepts such as:
 - Colored prompt  
 
 ## 📁 Project Structure
+
 ```
 .
 ├── Makefile
 ├── README.md
+├── data
+│   └── cmd_history
 ├── include
 │   ├── builtins.h
+│   ├── cmdHistory.h
 │   ├── executor.h
 │   ├── input.h
+│   ├── pipeline
+│   │   ├── pipe_detector.h
+│   │   └── pipe_executer.h
+│   ├── pipeline.h
 │   ├── prompt.h
+│   ├── redirection
+│   │   ├── input_redirection.h
+│   │   ├── redirect_detector.h
+│   │   ├── redirect_executor.h
+│   │   └── redirect_helper.h
+│   ├── redirection_append.h
 │   ├── shell.h
-│   └── tokenizer.h
+│   ├── tokenizer.h
+│   └── trim.h
 └── src
     ├── builtins
     │   ├── about.c
     │   ├── builtins.c
     │   ├── cd.c
+    │   ├── cmdHistory.c
     │   ├── count.c
     │   └── help.c
     ├── executor.c
     ├── input.c
     ├── main.c
+    ├── pipeline
+    │   ├── pipe_detector.c
+    │   └── pipe_executer.c
     ├── prompt.c
-    └── tokenizer.c
+    ├── redirection
+    │   ├── input_redirection.c
+    │   ├── redirect_detector.c
+    │   ├── redirect_executor.c
+    │   └── redirect_helper.c
+    ├── tokenizer.c
+    └── trim.c
 ```
 
 ## 🐧Running the Shell
@@ -54,7 +79,7 @@ cd linux-shell
 
 If you are not using Makefile:
 ```
-gcc src/*.c src/builtins/*.c -o shell
+gcc src/*.c src/builtins/*.c src/redirection/*.c src/pipeline/*.c -o shell -lreadline
 ```
 
 If you have a Makefile:
@@ -68,25 +93,31 @@ make
 You should see a prompt like:
 
 ```
->username@hostname:/current/directory$
+username@hostname:/current/directory$
 ```
+---
+> You can compile and run the project using `make run`.  
+
+> To remove object files and executables, use `make clean`.
+---
 ### 4️⃣ Built-in commands
 
-`cd <path>` → change directory
+| Command           | Description                         |
+|------------------|-------------------------------------|
+| `cd <path>`       | Change directory                    |
+| `help`            | Show help                            |
+| `about`           | Info about the shell                |
+| `count <file>`    | Count lines, words, and characters |
+| `exit`            | Exit the shell                      |
 
-`help` → show help
-
-`about` → info about the shell
-
-`count <filename>` → count lines, words, and characters in a file
-
-`exit` → exit the shell
+---
 
 ### 5️⃣ Notes
 
-- [x] You can also run any external Linux command like ls, grep, cat, etc.
+- [x] Supports external Linux commands (`ls`, `grep`, `cat`, etc.)
 
-- [x] Supports piping (|) and I/O redirection (>, >>, <).
+- [x] Supports piping `|` and I/O redirection (`>`, `>>`, `<`)
+
 
 ## 👨‍💻 Contributors
 
