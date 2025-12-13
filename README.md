@@ -116,7 +116,7 @@ username@hostname:/current/directory$
 
 - [x] Supports external Linux commands (`ls`, `grep`, `cat`, etc.)
 
-- [x] Supports piping `|` and all I/O redirection types (`>`, `>>`, `<`, `2>`, `2>>`, `&>`, `&>>`)
+- [x] Supports piping `|` and all I/O redirection types (`>`, `>>`, `<`, `<<`, `2>`, `2>>`, `&>`, `&>>`)
 
 
 ## 👨‍💻 Contributors
