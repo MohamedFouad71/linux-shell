@@ -3,7 +3,7 @@
 #define ANSI_COLOR_BLUE    "\x1b[34m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
-void display_prompt() {
+void get_prompt(char* promptBuffer) {
     char cwd[1024];
     getcwd(cwd, sizeof(cwd));
     
@@ -11,6 +11,10 @@ void display_prompt() {
     gethostname(hostname, sizeof(hostname));
 
     char *username = getenv("USER");
-    printf(ANSI_COLOR_GREEN "%s@%s" ANSI_COLOR_RESET ":" ANSI_COLOR_BLUE "%s" ANSI_COLOR_RESET "$ ",
-           username ? username : "user", hostname, cwd);
+
+    // Format the prompt and store it in promptBuffer
+    sprintf(promptBuffer, "%s%s@%s%s:%s%s%s$"
+            ,ANSI_COLOR_GREEN,username, hostname, ANSI_COLOR_RESET,
+            ANSI_COLOR_BLUE, cwd, ANSI_COLOR_RESET);
+    
 }

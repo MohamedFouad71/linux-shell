@@ -1,6 +1,6 @@
 #ifndef PROMPT_H
 #define PROMPT_H
 
-void display_prompt();
+void get_prompt(char* promptBuffer);
 
 #endif

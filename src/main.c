@@ -7,9 +7,10 @@ int main() {
     getHistoryFileDir(historyFilePath, PATH_MAX);
     
     while (1) {
-        display_prompt();
+        char prompt [MAXIMUM_LINE_LENGTH];
+        get_prompt(prompt);
     
-        char* input_line = read_input();
+        char* input_line = read_input(prompt);
         if (!input_line) break; // Handle Ctrl+D (EOF)
 
         // 1. Check Pipes
