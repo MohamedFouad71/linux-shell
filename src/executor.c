@@ -28,7 +28,7 @@ void execute_ls_with_color(char** args) {
     
     // error handling:
     perror("ls failed");
-    free(new_args);
+    free_tokenized_args(new_args);
     exit(1);
 }
 
@@ -68,7 +68,7 @@ void execute_command(char** args, char* line) {
         }
 
         perror("[Shell Error]: execvp failed in execute_command()");
-        free(args);
+        free_tokenized_args(args);
         free(line);
         exit(1);
         

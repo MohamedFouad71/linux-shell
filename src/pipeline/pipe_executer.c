@@ -51,19 +51,19 @@ void execute_pipeline(char *input_line,char* historyFilePath) {
             char **command_args = tokenize_input(commands[i], " ");
             
             if (command_args[0] == NULL) {
-                free(command_args);
+                free_tokenized_args(command_args);
                 exit(0);
             }
 
             // check and excute
             if (is_builtins(command_args, input_line,historyFilePath)) {
-                free(command_args);
+                free_tokenized_args(command_args);
                 free(input_line);
                 _exit(0);
             }
 
             execute_command(command_args, input_line);
-            free(command_args);
+            free_tokenized_args(command_args);
             free(input_line);
             _exit(1);
 
@@ -90,5 +90,5 @@ void execute_pipeline(char *input_line,char* historyFilePath) {
     for (int k = 0; k < num_commands; k++) {
         wait(NULL);
     }
-    free(commands);
+    free_tokenized_args(commands);
 }
