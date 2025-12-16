@@ -9,8 +9,8 @@ It covers essential concepts such as:
 - Process creation (fork)  
 - Command execution (execvp)  
 - Built-in commands  
-- I/O Redirection  
-- Piping  
+- I/O Redirection (dub2)
+- Piping (pipe)
 - History  
 - Colored prompt  
 
