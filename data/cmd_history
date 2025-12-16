@@ -1,0 +1,326 @@
+Sat Dec 13 21:34:29 2025
+ls 
+Sat Dec 13 21:34:46 2025
+cd - 
+Sat Dec 13 21:34:52 2025
+history 
+Sat Dec 13 21:35:02 2025
+!1 
+Sat Dec 13 21:35:14 2025
+clear 
+Sat Dec 13 21:35:23 2025
+exit 
+Sun Dec 14 16:00:38 2025
+clear 
+Sun Dec 14 16:00:54 2025
+  
+Sun Dec 14 16:01:22 2025
+cd ../ 
+Sun Dec 14 16:01:26 2025
+cd ../ 
+Sun Dec 14 16:01:29 2025
+pwd 
+Sun Dec 14 16:04:26 2025
+echo aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa 
+Sun Dec 14 16:06:06 2025
+clear 
+Sun Dec 14 16:06:13 2025
+clear 
+Sun Dec 14 16:07:03 2025
+EXIT 
+Sun Dec 14 16:07:06 2025
+exit 
+Sun Dec 14 16:07:13 2025
+cd / 
+Sun Dec 14 16:07:26 2025
+sleep 5 
+Sun Dec 14 16:08:03 2025
+cd / 
+Sun Dec 14 16:08:06 2025
+cd - 
+Sun Dec 14 16:08:31 2025
+ls 
+Sun Dec 14 16:08:38 2025
+cd ieee 
+Sun Dec 14 16:08:58 2025
+cd ../../../../../../../ 
+Sun Dec 14 16:09:05 2025
+clear 
+Sun Dec 14 16:09:24 2025
+pwd Documents 
+Sun Dec 14 16:10:17 2025
+cd ~ 
+Sun Dec 14 16:10:19 2025
+pwd 
+Sun Dec 14 16:10:33 2025
+exit pwd 
+Sun Dec 14 16:10:45 2025
+exit && ls 
+Sun Dec 14 19:39:17 2025
+clear 
+Sun Dec 14 19:39:33 2025
+ls 
+Sun Dec 14 19:39:43 2025
+ls 
+Sun Dec 14 19:39:50 2025
+clear 
+Sun Dec 14 19:39:55 2025
+ls -l 
+Sun Dec 14 19:40:00 2025
+ls -a 
+Sun Dec 14 19:40:09 2025
+ls data 
+Sun Dec 14 19:40:15 2025
+ls ieee 
+Sun Dec 14 19:40:39 2025
+cat out.txt 
+Sun Dec 14 19:40:46 2025
+rm out.txt 
+Sun Dec 14 19:40:48 2025
+ls 
+Sun Dec 14 19:40:52 2025
+clear 
+Sun Dec 14 19:41:15 2025
+ls 
+Sun Dec 14 19:41:15 2025
+wc -l 
+Sun Dec 14 19:42:27 2025
+mkdir test 
+Sun Dec 14 19:42:28 2025
+ls 
+Sun Dec 14 19:42:45 2025
+mkdir test1 test2 
+Sun Dec 14 19:42:46 2025
+ls 
+Sun Dec 14 19:42:54 2025
+mkdir test 
+Sun Dec 14 19:43:09 2025
+mkdir test/test 
+Sun Dec 14 19:43:13 2025
+ls test 
+Sun Dec 14 19:43:31 2025
+mkdir tets one 
+Sun Dec 14 19:43:32 2025
+ls 
+Sun Dec 14 19:44:08 2025
+rmdir test1 test2 tets one 
+Sun Dec 14 19:44:10 2025
+ls 
+Sun Dec 14 19:44:19 2025
+rmdir ieee 
+Sun Dec 14 19:44:29 2025
+rm -rf test 
+Sun Dec 14 19:44:30 2025
+ls 
+Sun Dec 14 19:44:53 2025
+rmdir data 
+Sun Dec 14 19:44:59 2025
+clear 
+Sun Dec 14 19:45:10 2025
+cat data/cmd_history 
+Sun Dec 14 19:45:14 2025
+clear 
+Sun Dec 14 19:45:37 2025
+cat ieee.txt 
+Sun Dec 14 19:46:16 2025
+ls 
+Sun Dec 14 19:46:25 2025
+cat 1.txt 2.txt 
+Sun Dec 14 19:46:43 2025
+ls 
+Sun Dec 14 19:47:05 2025
+cat 1.txt 
+Sun Dec 14 19:47:05 2025
+wc -l 
+Sun Dec 14 19:47:14 2025
+clear 
+Sun Dec 14 19:47:35 2025
+echo hello 
+Sun Dec 14 19:47:35 2025
+wc -c 
+Sun Dec 14 19:47:44 2025
+wc -c 
+Sun Dec 14 19:47:44 2025
+echo hello 
+Sun Dec 14 19:48:07 2025
+echo hello 
+Sun Dec 14 19:48:07 2025
+wc -c 
+Sun Dec 14 19:48:54 2025
+whoami 
+Sun Dec 14 19:49:00 2025
+whoami extra 
+Sun Dec 14 19:49:19 2025
+date 
+Sun Dec 14 19:49:22 2025
+cal 
+Sun Dec 14 19:49:36 2025
+date +%Y 
+Sun Dec 14 19:49:45 2025
+clear extra 
+Sun Dec 14 19:49:51 2025
+clear 
+Sun Dec 14 19:49:58 2025
+help 
+Sun Dec 14 19:50:12 2025
+help ls 
+Sun Dec 14 19:51:41 2025
+help cd 
+Sun Dec 14 19:54:09 2025
+clear 
+Sun Dec 14 19:56:35 2025
+about 
+Sun Dec 14 19:57:51 2025
+clear 
+Sun Dec 14 19:58:24 2025
+count data/cmd_history 
+Sun Dec 14 19:58:35 2025
+count ieee.txt 
+Sun Dec 14 19:58:38 2025
+ls 
+Sun Dec 14 19:58:46 2025
+rm 1.txt 2.txt 
+Sun Dec 14 19:58:47 2025
+ls 
+Sun Dec 14 19:58:51 2025
+clear 
+Sun Dec 14 20:04:10 2025
+count 1.txt 2.txt 
+Sun Dec 14 20:06:19 2025
+count --help 
+Sun Dec 14 20:24:21 2025
+clear 
+Sun Dec 14 20:25:01 2025
+ls 
+Sun Dec 14 20:25:01 2025
+wc -l 
+Sun Dec 14 20:25:13 2025
+ps aux 
+Sun Dec 14 20:25:13 2025
+grep root 
+Sun Dec 14 20:25:49 2025
+clear 
+Sun Dec 14 20:26:06 2025
+cat 2.txt 
+Sun Dec 14 20:26:06 2025
+grep worls 
+Sun Dec 14 20:26:09 2025
+cat 2.txt 
+Sun Dec 14 20:26:09 2025
+grep world 
+Sun Dec 14 20:26:16 2025
+cat 2.txt 
+Sun Dec 14 20:26:29 2025
+cat 2.txt 
+Sun Dec 14 20:26:29 2025
+grep World 
+Sun Dec 14 20:26:51 2025
+ls 
+Sun Dec 14 20:27:37 2025
+ls 
+Sun Dec 14 20:30:54 2025
+ls 
+Sun Dec 14 20:30:54 2025
+wc 
+Sun Dec 14 20:34:43 2025
+ls 
+Sun Dec 14 20:34:43 2025
+wc 
+Sun Dec 14 20:34:43 2025
+sort 
+Sun Dec 14 20:36:25 2025
+echo hello 
+Sun Dec 14 20:36:25 2025
+cat 
+Sun Dec 14 20:36:25 2025
+wc -c 
+Sun Dec 14 20:37:05 2025
+abcdefg 
+Sun Dec 14 20:37:12 2025
+--- ls 
+Sun Dec 14 20:37:16 2025
+rm 
+Sun Dec 14 20:37:29 2025
+cat /root/file 
+Sun Dec 14 20:38:44 2025
+clear 
+Sun Dec 14 20:38:56 2025
+make clean 
+Sun Dec 14 20:39:08 2025
+rm 1.txt 2.txt 
+Sun Dec 14 20:39:11 2025
+clear 
+Sun Dec 14 20:52:27 2025
+ls 
+Sun Dec 14 20:52:30 2025
+ks 
+Sun Dec 14 20:52:33 2025
+exit 
+Sun Dec 14 20:57:46 2025
+ls 
+Sun Dec 14 20:58:25 2025
+ls 
+Sun Dec 14 20:59:04 2025
+exit 
+Sun Dec 14 21:01:23 2025
+exit 
+Sun Dec 14 21:04:38 2025
+count 1.txt 2.txt 
+Sun Dec 14 21:05:03 2025
+count 1.txt 2.txt 
+Sun Dec 14 21:05:19 2025
+echo team 3.txt 
+Sun Dec 14 21:05:35 2025
+count 1.txt 2.txt 3.txt 
+Sun Dec 14 21:05:53 2025
+count 1.txt 2.txt 3.txt 
+Sun Dec 14 21:07:16 2025
+count 1.txt 2.txt 3.txt 
+Sun Dec 14 21:07:36 2025
+count 1.txt 2.txt 3.txt 
+Sun Dec 14 21:08:46 2025
+count 1.txt 2.txt 3.txt 
+Sun Dec 14 21:08:49 2025
+count 1.txt 2.txt 3.txt 
+Sun Dec 14 21:09:06 2025
+clear 
+Sun Dec 14 21:09:07 2025
+ls 
+Sun Dec 14 21:09:38 2025
+count 1.txt 2.txt 3.txt 
+Sun Dec 14 21:10:11 2025
+count 1.txt 2.txt 3.txt 4.txt 
+Sun Dec 14 21:12:43 2025
+exit 
+Sun Dec 14 21:15:19 2025
+ls 
+Sun Dec 14 21:18:13 2025
+ls 
+Sun Dec 14 21:18:32 2025
+count 1.txt 2.txt 3.txt 4.txt 
+Sun Dec 14 21:18:42 2025
+ls 
+Sun Dec 14 21:19:29 2025
+exit 
+Mon Dec 15 10:56:40 2025
+clear 
+Mon Dec 15 10:56:43 2025
+help 
+Mon Dec 15 10:56:49 2025
+help cd 
+Mon Dec 15 10:56:53 2025
+clear 
+Mon Dec 15 10:56:59 2025
+ls 
+Mon Dec 15 11:06:05 2025
+wc make README.md 
+Mon Dec 15 11:06:14 2025
+clear 
+Mon Dec 15 11:06:29 2025
+wc Makefile README.md 
+Mon Dec 15 11:08:34 2025
+count Makefile README.md 
+Mon Dec 15 11:12:25 2025
+count 1.txt 2.txt 3.txt 
+Mon Dec 15 11:13:43 2025
+count Makefile README.md 

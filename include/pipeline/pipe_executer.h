@@ -1,6 +1,6 @@
 #ifndef PIPE_EXECUTOR_H
 #define PIPE_EXECUTOR_H
 
-void execute_pipeline(char *input_line, char* historyFilePath);
+int execute_pipeline(char *input_line, char* historyFilePath);
 
 #endif

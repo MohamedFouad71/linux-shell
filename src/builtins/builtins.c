@@ -19,9 +19,16 @@ int is_builtins(char** args, char* line,char* historyFilePath) {
     }
 
     if (strcmp(args[0], "help") == 0) {
-        help();
+        if (args[1] != NULL) {
+            
+            help_specific(args[1]);
+        } else {
+            
+            help();
+        }
         return 1;
     }
+        
 
     if (strcmp(args[0], "count") == 0) {
         count(args);

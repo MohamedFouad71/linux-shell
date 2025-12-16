@@ -12,8 +12,8 @@ void get_prompt(char* promptBuffer) {
 
     char *username = getenv("USER");
 
-    // Format the prompt and store it in promptBuffer
-    sprintf(promptBuffer, "%s%s@%s%s:%s%s%s$"
+        // Format the prompt and store it in promptBuffer (add trailing space after $)
+        sprintf(promptBuffer, "%s%s@%s%s:%s%s%s$ "
             ,ANSI_COLOR_GREEN,username, hostname, ANSI_COLOR_RESET,
             ANSI_COLOR_BLUE, cwd, ANSI_COLOR_RESET);
     
