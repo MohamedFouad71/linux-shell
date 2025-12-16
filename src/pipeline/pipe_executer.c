@@ -1,4 +1,5 @@
 #include "../../include/pipeline/pipe_executer.h"
+#include "../../include/pipeline/pipe_detector.h"
 #include "../../include/tokenizer.h"
 #include "../../include/executor.h"
 #include "../../include/builtins.h"
@@ -7,10 +8,16 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 
-void execute_pipeline(char *input_line,char* historyFilePath) {
+int execute_pipeline(char *input_line,char* historyFilePath) {
+    // Validate pipe syntax first
+    if (!is_pipe_syntax_valid(input_line)) {
+        fprintf(stderr, "[Shell Error]: Invalid pipe syntax\n");
+        return 1;
+    }
+
     // 1. Split the input by the pipe symbol "|"
     char **commands = tokenize_input(input_line, "|");
-    if (!commands) return;
+    if (!commands) return 1;
 
     int num_commands = 0;
     while (commands[num_commands] != NULL) num_commands++;
@@ -24,14 +31,14 @@ void execute_pipeline(char *input_line,char* historyFilePath) {
         if (i < num_commands - 1) {
             if (pipe(fd) == -1) {
                 perror("[Shell Error]: Pipe failed");
-                return;
+                return 1;
             }
         }
 
         pid_t id = fork();
         if (id == -1) {
             perror("[Shell Error]: Fork failed");
-            return;
+            return 1;
         }
 
         if (id == 0) {
@@ -87,8 +94,13 @@ void execute_pipeline(char *input_line,char* historyFilePath) {
         }
     }
 
+    int last_status = 0;
     for (int k = 0; k < num_commands; k++) {
-        wait(NULL);
+        int st = 0;
+        wait(&st);
+        last_status = st;
     }
     free_tokenized_args(commands);
+    if (WIFEXITED(last_status)) return WEXITSTATUS(last_status);
+    return last_status;
 }

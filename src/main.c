@@ -1,5 +1,6 @@
 /* src/main.c */
 #include "../include/shell.h"
+#include "../include/pipeline/logical_or.h"
 #include <linux/limits.h>
 
 int main() {
@@ -13,7 +14,14 @@ int main() {
         char* input_line = read_input(prompt);
         if (!input_line) break; // Handle Ctrl+D (EOF)
 
-        // 1. Check Pipes
+        // 1. Check Logical OR (||)
+        if (has_logical_or(input_line)) {
+            execute_logical_or(input_line, historyFilePath);
+            free(input_line);
+            continue;
+        }
+
+        // 2. Check Pipes
         if (has_pipe(input_line)) {
             execute_pipeline(input_line, historyFilePath);
             free(input_line);

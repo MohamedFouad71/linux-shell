@@ -37,7 +37,7 @@ void execute_ls_with_color(char** args) {
 
 
 
-void execute_command(char** args, char* line) {
+int execute_command(char** args, char* line) {
     
 
 
@@ -50,7 +50,7 @@ void execute_command(char** args, char* line) {
     }
    
     if (args[0] == NULL) {
-        return;
+        return 0;
     }
 
     // Child process will run this block
@@ -74,6 +74,9 @@ void execute_command(char** args, char* line) {
         
     }
 
-    // Wait for child to terminate
-    wait(NULL);
+    // Wait for child to terminate and return its exit status
+    int status = 0;
+    waitpid(pid, &status, 0);
+    if (WIFEXITED(status)) return WEXITSTATUS(status);
+    return status;
 }
