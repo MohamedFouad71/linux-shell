@@ -11,6 +11,7 @@ It covers essential concepts such as:
 - Built-in commands  
 - I/O Redirection (dub2)
 - Piping (pipe)
+- logical or
 - History  
 - Colored prompt  
 
@@ -29,7 +30,8 @@ It covers essential concepts such as:
 │   ├── input.h
 │   ├── pipeline
 │   │   ├── pipe_detector.h
-│   │   └── pipe_executer.h
+│   │   ├── pipe_executer.h
+│   │   └── logical_or.h
 │   ├── pipeline.h
 │   ├── prompt.h
 │   ├── redirection
@@ -54,7 +56,8 @@ It covers essential concepts such as:
     ├── main.c
     ├── pipeline
     │   ├── pipe_detector.c
-    │   └── pipe_executer.c
+    │   ├── pipe_executer.c
+    │   └── logical_or.c
     ├── prompt.c
     ├── redirection
     │   ├── input_redirection.c
