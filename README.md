@@ -1,4 +1,4 @@
-# 🐧 Mini Linux Shell  
+# 🐧 Linux Shell  
 A simple Linux-like shell written in C for learning OS concepts, system calls, and command execution.
 
 ## 🚀 Overview
