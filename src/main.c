@@ -12,7 +12,11 @@ int main() {
         get_prompt(prompt);
     
         char* input_line = read_input(prompt);
-        if (!input_line) break; // Handle Ctrl+D (EOF)
+        // Handle Ctrl+D (EOF)
+        if (!input_line) {
+            clear_history();
+            break; 
+        }
 
         // 1. Check Logical OR (||)
         if (has_logical_or(input_line)) {

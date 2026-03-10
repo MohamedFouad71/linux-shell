@@ -5,6 +5,7 @@ int is_builtins(char** args, char* line,char* historyFilePath) {
     if (strcmp(args[0], "exit") == 0) {
         free(line);
         free_tokenized_args(args);
+        clear_history();
         exit(0);
     }
 

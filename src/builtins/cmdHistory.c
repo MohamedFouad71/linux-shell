@@ -5,22 +5,26 @@
 #include <string.h>
 
 void getHistoryFileDir(char* path, int size){
-    // /prc/self/exe is a symbolic link to the executable file of the current process
-    // readlink returns the contents of the symbolic link 
-    // Which is the path to our program
-    ssize_t length = readlink("/proc/self/exe", path, size);
-    if(length == -1){   //Error happended while reading the link
+    // 1. Pass (size - 1) to leave exactly one byte for the null terminator
+    ssize_t length = readlink("/proc/self/exe", path, size - 1);
+    
+    if(length == -1){   
         perror("Couldn't get history-file directory");
         return;
     }
-    // Get a pointer to the last slash in the path
+    
+    // 2. Manually null-terminate the string!
+    path[length] = '\0';
+
     char* lastSlash = strrchr(path,'/');
-    // Convert the last slash to a null character, and neglect the executable name
-    *lastSlash = '\0';
-    // Add the path of the cmd_history to the path of the project
+    
+    // 3. Good practice: Check if strrchr actually found a slash before dereferencing
+    if (lastSlash != NULL) {
+        *lastSlash = '\0';
+    }
+    
     strcat(path, "/data/cmd_history");
 }
-
 
 
 void addCommandToHistory(char** args, char* pathToFile){
