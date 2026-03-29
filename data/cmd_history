@@ -364,3 +364,175 @@ Tue Mar 10 21:14:42 2026
 exit 
 Tue Mar 10 21:17:39 2026
 exit 
+Sun Mar 29 18:09:30 2026
+exit 
+Sun Mar 29 18:10:15 2026
+help 
+Sun Mar 29 18:10:15 2026
+about 
+Sun Mar 29 18:10:15 2026
+count Makefile 
+Sun Mar 29 18:10:15 2026
+exit 
+Sun Mar 29 18:10:17 2026
+grep Contributors README.md 
+Sun Mar 29 18:10:17 2026
+cat README.md 
+Sun Mar 29 18:10:17 2026
+ls 
+Sun Mar 29 18:10:17 2026
+grep src 
+Sun Mar 29 18:11:17 2026
+help 
+Sun Mar 29 18:11:17 2026
+about 
+Sun Mar 29 18:11:17 2026
+count Makefile 
+Sun Mar 29 18:11:17 2026
+exit 
+Sun Mar 29 18:11:18 2026
+grep Contributors README.md 
+Sun Mar 29 18:11:18 2026
+cat README.md 
+Sun Mar 29 18:11:18 2026
+ls 
+Sun Mar 29 18:11:18 2026
+grep src 
+Sun Mar 29 18:11:21 2026
+cat notfound 
+Sun Mar 29 18:11:21 2026
+echo failed 
+Sun Mar 29 18:11:21 2026
+exit 
+Sun Mar 29 18:12:35 2026
+help 
+Sun Mar 29 18:12:35 2026
+about 
+Sun Mar 29 18:12:35 2026
+count Makefile 
+Sun Mar 29 18:12:35 2026
+exit 
+Sun Mar 29 18:12:36 2026
+grep Contributors README.md 
+Sun Mar 29 18:12:36 2026
+cat README.md 
+Sun Mar 29 18:12:36 2026
+ls 
+Sun Mar 29 18:12:36 2026
+grep src 
+Sun Mar 29 18:13:21 2026
+help 
+Sun Mar 29 18:13:21 2026
+about 
+Sun Mar 29 18:13:21 2026
+count Makefile 
+Sun Mar 29 18:13:21 2026
+exit 
+Sun Mar 29 18:13:22 2026
+grep Contributors README.md 
+Sun Mar 29 18:13:22 2026
+cat README.md 
+Sun Mar 29 18:13:22 2026
+grep src 
+Sun Mar 29 18:13:22 2026
+ls 
+Sun Mar 29 18:13:23 2026
+cat notfound 
+Sun Mar 29 18:13:23 2026
+echo failed 
+Sun Mar 29 18:13:23 2026
+exit 
+Sun Mar 29 18:14:30 2026
+help 
+Sun Mar 29 18:14:30 2026
+about 
+Sun Mar 29 18:14:30 2026
+count Makefile 
+Sun Mar 29 18:14:30 2026
+exit 
+Sun Mar 29 18:14:31 2026
+grep Contributors README.md 
+Sun Mar 29 18:14:31 2026
+cat README.md 
+Sun Mar 29 18:14:31 2026
+ls 
+Sun Mar 29 18:14:31 2026
+grep src 
+Sun Mar 29 18:14:32 2026
+cat notfound 
+Sun Mar 29 18:14:32 2026
+echo failed 
+Sun Mar 29 18:14:32 2026
+exit 
+Sun Mar 29 18:15:41 2026
+help 
+Sun Mar 29 18:15:41 2026
+about 
+Sun Mar 29 18:15:41 2026
+count Makefile 
+Sun Mar 29 18:15:41 2026
+exit 
+Sun Mar 29 18:15:42 2026
+grep Contributors README.md 
+Sun Mar 29 18:15:42 2026
+cat README.md 
+Sun Mar 29 18:15:42 2026
+grep src 
+Sun Mar 29 18:15:42 2026
+ls 
+Sun Mar 29 18:15:43 2026
+cat notfound 
+Sun Mar 29 18:15:43 2026
+echo failed 
+Sun Mar 29 18:15:43 2026
+rm out.txt err.txt out_err.txt final.txt 
+Sun Mar 29 18:15:43 2026
+exit 
+Sun Mar 29 20:43:18 2026
+read 
+Sun Mar 29 20:43:21 2026
+read 
+Sun Mar 29 20:43:24 2026
+read 
+Sun Mar 29 20:43:33 2026
+ls 
+Sun Mar 29 20:43:36 2026
+read 
+Sun Mar 29 20:44:15 2026
+./tests/valgrind/valgrind.sh 
+Sun Mar 29 20:56:48 2026
+ls 
+Sun Mar 29 20:58:15 2026
+ls 
+Sun Mar 29 21:04:32 2026
+ls 
+Sun Mar 29 21:07:34 2026
+cd . 
+Sun Mar 29 21:07:35 2026
+help 
+Sun Mar 29 21:07:37 2026
+about 
+Sun Mar 29 21:07:39 2026
+count Makefile 
+Sun Mar 29 21:07:40 2026
+exit 
+Sun Mar 29 21:07:42 2026
+ls 
+Sun Mar 29 21:07:46 2026
+grep Contributors README.md 
+Sun Mar 29 21:07:48 2026
+cat README.md 
+Sun Mar 29 21:07:50 2026
+ls 
+Sun Mar 29 21:07:50 2026
+grep src 
+Sun Mar 29 21:08:02 2026
+cat notfound 
+Sun Mar 29 21:08:02 2026
+echo failed 
+Sun Mar 29 21:08:06 2026
+rm out.txt err.txt out_err.txt final.txt 
+Sun Mar 29 21:08:07 2026
+exit 
+Sun Mar 29 21:08:25 2026
+cd . 

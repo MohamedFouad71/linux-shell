@@ -20,6 +20,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
     
+    - name: Install Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y valgrind libreadline-dev
+
     - name: Run valgrind memory check
       run: |
         chmod +x ./tests/valgrind/valgrind.sh
@@ -32,6 +37,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
     
+    - name: Install Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libreadline-dev
+
     - name: Run unit tests
       run: |
         chmod +x ./tests/unit_tests/run-unit-tests.sh
