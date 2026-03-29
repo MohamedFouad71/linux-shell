@@ -4,6 +4,12 @@ char* read_input(char* prompt) {
     char *line = readline(prompt);
 
     // Add the command to readline history
+
+    if (line == NULL) {
+        printf("\n");
+        exit(0);
+    }
+
     if(strlen(line)>0){
         add_history(line);
     }
