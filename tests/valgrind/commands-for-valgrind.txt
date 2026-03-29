@@ -1,0 +1,19 @@
+cd .
+help
+about
+count Makefile
+exit
+ls
+grep Contributors README.md
+cat README.md
+ls | grep src
+echo test > out.txt
+echo test >> out.txt
+ls 2> err.txt
+ls 2>> err.txt
+ls &> out_err.txt
+ls &>> out_err.txt
+cat notfound || echo "failed"
+ls &>> final.txt
+rm out.txt err.txt out_err.txt final.txt
+exit

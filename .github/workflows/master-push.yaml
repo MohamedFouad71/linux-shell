@@ -1,0 +1,9 @@
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  notify:
+    uses: ./.github/workflows/notify.yaml
+    secrets: inherit

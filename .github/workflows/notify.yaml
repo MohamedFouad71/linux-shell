@@ -1,0 +1,66 @@
+name: Notify
+
+on:
+  workflow_call:
+
+jobs:
+  notify:
+    name: Success Email
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Pipeline Email to Team
+        run: |
+          # 1. Define your team emails (separated by spaces)
+          TEAM_EMAILS="${{ secrets.TEAM_EMAILS }}"
+
+          # 2. Start the loop
+          for EMAIL in $TEAM_EMAILS; do
+          echo "Sending email to $EMAIL..."
+
+          # 3. Create a personalized message
+          cat <<EOF > message.txt
+          From: Pipeline Bot <mohamed.fouad.softwareengineer@gmail.com>
+          To: $EMAIL
+          Subject: [${{ github.repository }}] Push to ${{ github.ref_name }}
+          MIME-Version: 1.0
+          Content-Type: text/html; charset=UTF-8
+
+          <div style="font-family: 'Consolas', 'Courier New', monospace; background-color: #0D1117; color: #C9D1D9; padding: 40px 20px; line-height: 1.6; text-align: left;">
+              <div style="max-width: 600px; margin: auto; border: 1px solid #30363D; border-radius: 6px; padding: 25px; background-color: #161B22; box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
+              
+              <div style="border-bottom: 1px solid #30363D; padding-bottom: 15px; margin-bottom: 20px;">
+                  <span style="color: #8B949E; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Repository Update</span><br>
+                  <span style="color: #58A6FF; font-size: 20px; font-weight: bold;">[${{ github.repository }}]</span>
+              </div>
+              
+              <p style="font-size: 14px; margin: 0 0 15px 0;">
+                  <strong style="color: #E6EDF3;">${{ github.actor }}</strong> pushed to <span style="background-color: rgba(63, 185, 80, 0.15); color: #3FB950; padding: 2px 8px; border: 1px solid rgba(63, 185, 80, 0.4); border-radius: 12px; font-size: 13px;">${{ github.ref_name }}</span>
+              </p>
+              
+              <p style="font-size: 14px; color: #3FB950; font-weight: bold; margin-bottom: 25px;">
+                  ✓ Automation pipeline finished successfully
+              </p>
+              
+              <div style="margin: 20px 0; padding: 15px 20px; background-color: #0D1117; border-left: 4px solid #30363D; border-radius: 0 4px 4px 0;">
+                  <p style="margin: 0; color: #8B949E; font-size: 12px; text-transform: uppercase;">Commit Message:</p>
+                  <p style="margin: 8px 0 0 0; color: #E6EDF3; white-space: pre-wrap; font-size: 14px;">${{ github.event.head_commit.message }}</p>
+              </div>
+
+              <div style="margin-top: 30px; text-align: center;">
+                  <a href="${{ github.event.head_commit.url }}" style="display: inline-block; background-color: #21262D; color: #C9D1D9; border: 1px solid #363B42; padding: 10px 24px; text-decoration: none; border-radius: 6px; font-size: 14px; font-weight: 600;">View changes (git diff)</a>
+              </div>
+              </div>
+          </div>
+          EOF
+
+          # 4. Send the email via Brevo
+          curl --ssl-reqd \
+          --silent \
+          --show-error \
+          --url "smtps://smtp-relay.brevo.com:465" \
+          --user "${{ secrets.BREVO_SMTP_USER }}:${{ secrets.BREVO_SMTP_PASSWORD }}" \
+          --mail-from "mf2976527@gmail.com" \
+          --mail-rcpt "$EMAIL" \
+          --upload-file message.txt
+
+          done
